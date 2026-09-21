@@ -3,10 +3,8 @@ import {
   ClipboardCheck,
   FileText,
   Linkedin,
-  MapPin,
   Phone,
   Search,
-  Snowflake,
   Wrench,
 } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -14,9 +12,16 @@ import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import heroImage from "@/assets/frio-hero.jpg";
-import roomDoors from "@/assets/frio-room-doors.jpg";
-import roomUnits from "@/assets/frio-room-units.jpg";
+import heroImage from "@/assets/cold-storage-warehouse.png.asset.json";
+import brandLogo from "@/assets/frioequipos-logo.png.asset.json";
+import coverageMap from "@/assets/coverage-map.png.asset.json";
+import roomInstallation from "@/assets/cold-room-installation.png.asset.json";
+import uatLogo from "@/assets/uat-logo.jpg.asset.json";
+import teneriasLogo from "@/assets/tenerias-logo.jpg.asset.json";
+import casonaLogo from "@/assets/casona-santa-lucia-logo.jpg.asset.json";
+import arenaLogo from "@/assets/arena-monterrey-logo.png.asset.json";
+import bonafontLogo from "@/assets/bonafont-logo.png.asset.json";
+import safiLogo from "@/assets/safi-logo.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,7 +51,14 @@ const whatsappText = encodeURIComponent(
 );
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
 
-const clients = ["SAFI", "BONAFONT", "ARENA MONTERREY", "SANTA LUCÍA", "TENERÍAS", "UAT"];
+const clients = [
+  { name: "SAFI Royal Luxury Hotels", asset: safiLogo },
+  { name: "Bonafont", asset: bonafontLogo },
+  { name: "Arena Monterrey", asset: arenaLogo },
+  { name: "La Casona de Santa Lucía", asset: casonaLogo },
+  { name: "Tenerías", asset: teneriasLogo },
+  { name: "Universidad Autónoma de Tamaulipas", asset: uatLogo },
+];
 
 const steps = [
   {
@@ -82,16 +94,6 @@ const proofItems = [
   ["Estándares de calidad", "Instalaciones para la Certificación TIF o el Distintivo H."],
 ];
 
-const mapPoints = [
-  "top-[14%] left-[46%]",
-  "top-[27%] left-[54%]",
-  "top-[39%] left-[44%]",
-  "top-[51%] left-[57%]",
-  "top-[63%] left-[49%]",
-  "top-[75%] left-[58%]",
-  "top-[86%] left-[51%]",
-];
-
 function Index() {
   const [status, setStatus] = useState("");
 
@@ -122,17 +124,7 @@ function Index() {
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
         <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-10">
           <a href="#inicio" className="flex items-center gap-2" aria-label="Frioequipos inicio">
-            <span className="flex size-5 items-center justify-center border border-brand-line text-xs font-black text-brand-deep">
-              F
-            </span>
-            <span>
-              <span className="block font-logo text-xl font-bold leading-none logo-spacing text-brand-navy sm:text-2xl">
-                RIOEQUIPOS
-              </span>
-              <span className="block text-center text-[0.56rem] font-medium uppercase tracking-[0.32em] text-brand-deep">
-                cuartos fríos
-              </span>
-            </span>
+            <img src={brandLogo.url} alt="Frioequipos Cuartos Fríos" className="h-auto w-44 sm:w-52" />
           </a>
 
           <div className="flex items-center gap-3 sm:gap-8">
@@ -158,7 +150,7 @@ function Index() {
       <main id="inicio">
         <section className="relative isolate min-h-[640px] overflow-hidden bg-brand-navy lg:min-h-[630px]">
           <img
-            src={heroImage}
+            src={heroImage.url}
             alt="Almacén industrial refrigerado con puerta de cuarto frío"
             width={1600}
             height={900}
@@ -238,12 +230,17 @@ function Index() {
               Negocios que ya operan con cuartos fríos construidos por nosotros.
             </p>
             <div className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
-              {clients.map((client, index) => (
+              {clients.map((client) => (
                 <div
-                  key={client}
-                  className="flex h-16 items-center justify-center border border-primary-foreground/10 bg-brand-navy px-3 text-center text-sm font-bold text-primary-foreground shadow-cold"
+                  key={client.name}
+                  className="flex h-20 items-center justify-center overflow-hidden border border-primary-foreground/10 bg-card p-2 shadow-cold"
                 >
-                  <span className={index === 1 ? "text-accent" : undefined}>{client}</span>
+                  <img
+                    src={client.asset.url}
+                    alt={client.name}
+                    loading="lazy"
+                    className="h-full w-full object-contain"
+                  />
                 </div>
               ))}
             </div>
@@ -327,18 +324,14 @@ function Index() {
 
         <section className="bg-brand-panel py-16 sm:py-24">
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 md:grid-cols-[360px_1fr]">
-            <div className="relative mx-auto h-[430px] w-[250px]">
-              <div className="absolute left-4 top-4 h-[390px] w-[160px] rotate-[-7deg] rounded-[45%_55%_48%_52%] bg-brand-deep" />
-              <div className="absolute left-16 top-0 h-[410px] w-[150px] rotate-[9deg] rounded-[46%_54%_42%_58%] bg-brand-steel" />
-              <div className="absolute left-26 top-24 h-[230px] w-[90px] rotate-[-14deg] rounded-[44%_55%_50%_48%] bg-brand-steel" />
-              {mapPoints.map((point) => (
-                <Snowflake
-                  key={point}
-                  className={`absolute ${point} size-9 text-brand-deep drop-shadow-sm`}
-                  aria-hidden="true"
-                />
-              ))}
-            </div>
+            <img
+              src={coverageMap.url}
+              alt="Cobertura de Frioequipos en el norte de México"
+              width={285}
+              height={482}
+              loading="lazy"
+              className="mx-auto h-auto w-full max-w-[285px] object-contain"
+            />
             <div className="text-center md:text-left">
               <h2 className="mx-auto max-w-2xl text-balance text-4xl font-black leading-[0.9] text-brand-navy sm:text-5xl md:mx-0">
                 Contamos con servicio en todo el norte del país
@@ -373,7 +366,7 @@ function Index() {
           </div>
           <div className="grid min-h-[350px] grid-cols-2">
             <img
-              src={roomDoors}
+              src={heroImage.url}
               alt="Cuarto frío con puertas dobles instalado"
               width={928}
               height={720}
@@ -381,7 +374,7 @@ function Index() {
               className="h-full min-h-[350px] w-full object-cover"
             />
             <img
-              src={roomUnits}
+              src={roomInstallation.url}
               alt="Interior de cuarto frío con unidades de refrigeración"
               width={928}
               height={720}
