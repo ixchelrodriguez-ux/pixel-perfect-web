@@ -88,10 +88,18 @@ const steps = [
 ];
 
 const proofItems = [
-  ["+50 años", "de experiencia en refrigeración industrial."],
-  ["Grandes marcas confían en nosotros", "Universidades, hoteles, restaurantes y empresas ya operan con Frioequipos."],
-  ["Diseño, obra y mantenimiento", "un mismo equipo encargándose de tu proyecto."],
-  ["Estándares de calidad", "Instalaciones para la Certificación TIF o el Distintivo H."],
+  { title: "+50 años", copy: "de experiencia en refrigeración industrial.", dark: false },
+  {
+    title: "Grandes marcas confían en nosotros",
+    copy: "Universidades, hoteles, restaurantes y empresas ya operan con Frioequipos.",
+    dark: true,
+  },
+  { title: "Diseño, obra y mantenimiento", copy: "un mismo equipo encargándose de tu proyecto.", dark: true },
+  {
+    title: "Estándares de calidad",
+    copy: "Instalaciones para la Certificación TIF o el Distintivo H.",
+    dark: false,
+  },
 ];
 
 function Index() {
@@ -295,10 +303,27 @@ function Index() {
               </div>
             </div>
             <div className="grid border border-brand-line bg-brand-panel sm:grid-cols-2">
-              {proofItems.map(([title, copy]) => (
-                <article key={title} className="min-h-36 border-b border-brand-line p-6 sm:border-r sm:even:border-r-0 [&:nth-last-child(-n+2)]:sm:border-b-0">
-                  <h3 className="text-2xl font-black leading-none text-brand-navy">{title}</h3>
-                  <p className="mt-3 text-base font-medium leading-tight text-card-foreground">{copy}</p>
+              {proofItems.map((item) => (
+                <article
+                  key={item.title}
+                  className={`min-h-36 border-b border-brand-line p-6 sm:border-r sm:even:border-r-0 [&:nth-last-child(-n+2)]:sm:border-b-0 ${
+                    item.dark ? "bg-brand-navy" : "bg-brand-panel"
+                  }`}
+                >
+                  <h3
+                    className={`text-2xl font-black leading-none ${
+                      item.dark ? "text-primary-foreground" : "text-brand-navy"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className={`mt-3 text-base font-medium leading-tight ${
+                      item.dark ? "text-primary-foreground/90" : "text-card-foreground"
+                    }`}
+                  >
+                    {item.copy}
+                  </p>
                 </article>
               ))}
             </div>
