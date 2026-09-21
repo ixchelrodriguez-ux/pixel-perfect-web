@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ClipboardSearch,
+  ClipboardList,
   ReceiptText,
   Linkedin,
   Phone,
@@ -65,7 +65,7 @@ const steps = [
     number: "1",
     title: "Diagnóstico",
     text: "Visitamos tu negocio, medimos y entendemos el volumen de tu producto y operación actual.",
-    icon: ClipboardSearch,
+    icon: ClipboardList,
   },
   {
     number: "2",
