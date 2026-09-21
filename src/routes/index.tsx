@@ -1,12 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ClipboardList,
-  ReceiptText,
-  Linkedin,
-  Phone,
-  Refrigerator,
-  Settings,
-} from "lucide-react";
+import { Linkedin, Phone } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -22,6 +15,10 @@ const casonaLogo = "/casona-santa-lucia-logo.jpg";
 const arenaLogo = "/arena-monterrey-logo.png";
 const bonafontLogo = "/bonafont-logo.png";
 const safiLogo = "/safi-logo.jpg";
+const diagnosticoIcon = "/diagnostico-icon.png";
+const cotizacionIcon = "/cotizacion-icon.png";
+const construccionIcon = "/construccion-icon.png";
+const entregaIcon = "/entrega-icon.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,25 +62,25 @@ const steps = [
     number: "1",
     title: "Diagnóstico",
     text: "Visitamos tu negocio, medimos y entendemos el volumen de tu producto y operación actual.",
-    icon: ClipboardList,
+    icon: diagnosticoIcon,
   },
   {
     number: "2",
     title: "Cotización",
     text: "Te entregamos una propuesta técnica con capacidad, materiales y costo de inversión.",
-    icon: ReceiptText,
+    icon: cotizacionIcon,
   },
   {
     number: "3",
     title: "Construcción",
     text: "Instalamos y construimos con las medidas y tiempos acordados en un inicio.",
-    icon: Settings,
+    icon: construccionIcon,
   },
   {
     number: "4",
     title: "Entrega",
     text: "Dejamos el cuarto operando y capacitamos a tu equipo para usarlo desde el primer día.",
-    icon: Refrigerator,
+    icon: entregaIcon,
   },
 ];
 
@@ -276,7 +273,12 @@ function Index() {
                   <p className="mt-4 max-w-[13rem] text-xs font-medium leading-[0.95] text-card-foreground sm:min-h-[3.5rem]">
                     {step.text}
                   </p>
-                  <step.icon className="mt-auto size-20 self-center stroke-[1.5] text-brand-deep" aria-hidden="true" />
+                  <img
+                    src={step.icon}
+                    alt=""
+                    aria-hidden="true"
+                    className="mt-auto size-20 self-center object-contain"
+                  />
                 </article>
               ))}
             </div>
@@ -426,3 +428,4 @@ function Index() {
     </div>
   );
 }
+
