@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ClipboardCheck,
-  FileText,
+  ClipboardList,
+  ReceiptText,
   Linkedin,
   Phone,
-  Search,
-  Wrench,
+  Refrigerator,
+  Settings,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
@@ -65,25 +65,25 @@ const steps = [
     number: "1",
     title: "Diagnóstico",
     text: "Visitamos tu negocio, medimos y entendemos el volumen de tu producto y operación actual.",
-    icon: Search,
+    icon: ClipboardList,
   },
   {
     number: "2",
     title: "Cotización",
     text: "Te entregamos una propuesta técnica con capacidad, materiales y costo de inversión.",
-    icon: FileText,
+    icon: ReceiptText,
   },
   {
     number: "3",
     title: "Construcción",
     text: "Instalamos y construimos con las medidas y tiempos acordados en un inicio.",
-    icon: Wrench,
+    icon: Settings,
   },
   {
     number: "4",
     title: "Entrega",
     text: "Dejamos el cuarto operando y capacitamos a tu equipo para usarlo desde el primer día.",
-    icon: ClipboardCheck,
+    icon: Refrigerator,
   },
 ];
 
@@ -247,28 +247,28 @@ function Index() {
           </div>
         </section>
 
-        <section className="bg-brand-panel py-18 sm:py-20">
-          <div className="mx-auto max-w-6xl px-5 sm:px-8">
-            <div className="mb-8">
-              <h2 className="text-balance text-3xl font-black text-brand-navy sm:text-4xl">
+        <section className="bg-brand-panel py-12 sm:py-14">
+          <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
+            <div className="mb-6">
+              <h2 className="text-balance text-[1.7rem] font-black leading-none text-brand-navy sm:text-[2rem]">
                 Así se construye tu cuarto frío
               </h2>
-              <p className="mt-2 text-lg font-medium text-brand-navy">
+              <p className="mt-2 text-sm font-medium leading-none text-brand-navy sm:text-base">
                 Cuatro simples pasos para transformar tu negocio a uno más fuerte y confiable
               </p>
             </div>
-            <div className="grid border border-brand-line bg-card md:grid-cols-4">
+            <div className="grid border border-brand-line bg-card sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step) => (
                 <article
                   key={step.number}
-                  className="min-h-64 border-b border-brand-line p-5 md:border-b-0 md:border-r md:last:border-r-0"
+                  className="flex min-h-[288px] flex-col border-b border-brand-line p-4 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b lg:min-h-[288px] lg:border-b-0 lg:border-r lg:[&:nth-child(odd)]:border-r lg:[&:nth-child(-n+2)]:border-b-0 lg:last:border-r-0"
                 >
-                  <p className="text-xl font-black text-brand-deep">{step.number}</p>
-                  <h3 className="mt-2 text-xl font-extrabold text-brand-navy">{step.title}</h3>
-                  <p className="mt-6 text-sm font-medium leading-tight text-card-foreground">
+                  <p className="text-base font-black leading-none text-brand-deep">{step.number}</p>
+                  <h3 className="mt-2 text-base font-extrabold leading-none text-brand-navy">{step.title}</h3>
+                  <p className="mt-4 max-w-[13rem] text-xs font-medium leading-[0.95] text-card-foreground sm:min-h-[3.5rem]">
                     {step.text}
                   </p>
-                  <step.icon className="mt-8 size-16 stroke-[1.5] text-brand-deep" aria-hidden="true" />
+                  <step.icon className="mt-auto size-20 self-center stroke-[1.5] text-brand-deep" aria-hidden="true" />
                 </article>
               ))}
             </div>
