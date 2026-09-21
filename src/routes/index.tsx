@@ -229,17 +229,17 @@ function Index() {
             <p className="text-[11px] font-semibold leading-none text-primary-foreground">
               Negocios que ya operan con cuartos fríos construidos por nosotros.
             </p>
-            <div className="mt-3 grid grid-cols-2 items-center gap-x-7 gap-y-5 sm:grid-cols-3 md:grid-cols-6 md:gap-x-6 lg:gap-x-9">
+            <div className="mt-4 grid grid-cols-2 items-center gap-x-6 gap-y-5 sm:grid-cols-3 md:grid-cols-6 md:gap-x-5 lg:gap-x-7">
               {clients.map((client) => (
                 <div
                   key={client.name}
-                  className="flex h-10 items-center justify-center overflow-hidden"
+                  className="flex items-center justify-center"
                 >
                   <img
                     src={client.asset.url}
                     alt={client.name}
                     loading="lazy"
-                    className={`max-h-10 w-full object-contain ${client.size}`}
+                    className={`h-auto w-full object-contain ${client.size}`}
                   />
                 </div>
               ))}
