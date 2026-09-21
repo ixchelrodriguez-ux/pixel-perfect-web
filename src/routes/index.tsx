@@ -145,9 +145,10 @@ function Index() {
               </span>
               8125947679
             </a>
-            <Button asChild variant="whatsapp" size="lg" className="px-4 text-xs sm:px-6 sm:text-sm">
+            <Button asChild variant="whatsapp" size="lg" className="px-3 text-xs sm:px-6 sm:text-sm">
               <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                Cotización por Whatsapp
+                <span className="hidden min-[430px]:inline">Cotización por Whatsapp</span>
+                <span className="min-[430px]:hidden">Whatsapp</span>
               </a>
             </Button>
           </div>
