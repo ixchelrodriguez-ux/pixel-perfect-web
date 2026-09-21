@@ -52,12 +52,12 @@ const whatsappText = encodeURIComponent(
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
 
 const clients = [
-  { name: "SAFI Royal Luxury Hotels", asset: safiLogo },
-  { name: "Bonafont", asset: bonafontLogo },
-  { name: "Arena Monterrey", asset: arenaLogo },
-  { name: "La Casona de Santa Lucía", asset: casonaLogo },
-  { name: "Tenerías", asset: teneriasLogo },
-  { name: "Universidad Autónoma de Tamaulipas", asset: uatLogo },
+  { name: "SAFI Royal Luxury Hotels", asset: safiLogo, size: "max-w-[96px]" },
+  { name: "Bonafont", asset: bonafontLogo, size: "max-w-[84px]" },
+  { name: "Arena Monterrey", asset: arenaLogo, size: "max-w-[108px]" },
+  { name: "La Casona de Santa Lucía", asset: casonaLogo, size: "max-w-[180px]" },
+  { name: "Tenerías", asset: teneriasLogo, size: "max-w-[96px]" },
+  { name: "Universidad Autónoma de Tamaulipas", asset: uatLogo, size: "max-w-[112px]" },
 ];
 
 const steps = [
@@ -224,22 +224,22 @@ function Index() {
           </div>
         </section>
 
-        <section className="bg-brand-deep py-9 text-primary-foreground">
+        <section className="bg-brand-deep py-6 text-primary-foreground sm:py-7">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-            <p className="text-sm font-medium text-primary-foreground/90">
+            <p className="text-[11px] font-semibold leading-none text-primary-foreground">
               Negocios que ya operan con cuartos fríos construidos por nosotros.
             </p>
-            <div className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
+            <div className="mt-5 grid grid-cols-2 items-center gap-x-7 gap-y-5 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-9">
               {clients.map((client) => (
                 <div
                   key={client.name}
-                  className="flex h-20 items-center justify-center overflow-hidden border border-primary-foreground/10 bg-card p-2 shadow-cold"
+                  className="flex h-12 items-center justify-center overflow-hidden"
                 >
                   <img
                     src={client.asset.url}
                     alt={client.name}
                     loading="lazy"
-                    className="h-full w-full object-contain"
+                    className={`max-h-12 w-full object-contain ${client.size}`}
                   />
                 </div>
               ))}
