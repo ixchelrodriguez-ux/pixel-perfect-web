@@ -69,8 +69,9 @@
   --color-whatsapp-foreground: var(--whatsapp-foreground);
   --shadow-cold: var(--shadow-cold);
   --shadow-cold-lg: var(--shadow-cold-lg);
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
+  --font-sans: var(--brand-font-sans);
+  --font-display: var(--brand-font-display);
+  --font-logo: var(--brand-font-logo);
 }
 
 :root {
@@ -117,8 +118,9 @@
   --whatsapp-foreground: oklch(0.99 0.006 145.41);
   --shadow-cold: 0 16px 36px -24px oklch(0.19 0.052 263.68 / 55%);
   --shadow-cold-lg: 0 22px 52px -26px oklch(0.19 0.052 263.68 / 70%);
-  --font-sans: "Montserrat", "Arial", sans-serif;
-  --font-display: "Montserrat", "Arial", sans-serif;
+  --brand-font-sans: "Montserrat", "Arial", sans-serif;
+  --brand-font-display: "Montserrat", "Arial", sans-serif;
+  --brand-font-logo: Georgia, "Times New Roman", serif;
 }
 
 .dark {
@@ -164,7 +166,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
+    font-family: var(--brand-font-sans);
   }
 
   html {

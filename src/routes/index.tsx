@@ -126,7 +126,7 @@ function Index() {
               F
             </span>
             <span>
-              <span className="block font-serif text-xl font-bold leading-none logo-spacing text-brand-navy sm:text-2xl">
+              <span className="block font-logo text-xl font-bold leading-none logo-spacing text-brand-navy sm:text-2xl">
                 RIOEQUIPOS
               </span>
               <span className="block text-center text-[0.56rem] font-medium uppercase tracking-[0.32em] text-brand-deep">
