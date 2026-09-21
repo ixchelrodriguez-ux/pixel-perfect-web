@@ -224,22 +224,22 @@ function Index() {
           </div>
         </section>
 
-        <section className="bg-brand-deep py-6 text-primary-foreground sm:py-7">
+        <section className="bg-brand-deep py-5 text-primary-foreground">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <p className="text-[11px] font-semibold leading-none text-primary-foreground">
               Negocios que ya operan con cuartos fríos construidos por nosotros.
             </p>
-            <div className="mt-5 grid grid-cols-2 items-center gap-x-7 gap-y-5 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-9">
+            <div className="mt-3 grid grid-cols-2 items-center gap-x-7 gap-y-5 sm:grid-cols-3 md:grid-cols-6 md:gap-x-6 lg:gap-x-9">
               {clients.map((client) => (
                 <div
                   key={client.name}
-                  className="flex h-12 items-center justify-center overflow-hidden"
+                  className="flex h-10 items-center justify-center overflow-hidden"
                 >
                   <img
                     src={client.asset.url}
                     alt={client.name}
                     loading="lazy"
-                    className={`max-h-12 w-full object-contain ${client.size}`}
+                    className={`max-h-10 w-full object-contain ${client.size}`}
                   />
                 </div>
               ))}
