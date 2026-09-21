@@ -122,12 +122,12 @@ function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
-        <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-10">
-          <a href="#inicio" className="flex items-center gap-2" aria-label="Frioequipos inicio">
+        <div className="mx-auto grid min-h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:flex sm:justify-between sm:px-8 lg:px-10">
+          <a href="#inicio" className="flex min-w-0 items-center gap-2" aria-label="Frioequipos inicio">
             <img src={brandLogo.url} alt="Frioequipos Cuartos Fríos" className="h-auto w-44 sm:w-52" />
           </a>
 
-          <div className="flex items-center gap-3 sm:gap-8">
+          <div className="flex shrink-0 items-center gap-3 sm:gap-8">
             <a
               href="tel:+528125947679"
               className="hidden items-center gap-2 text-sm font-extrabold text-brand-deep sm:flex"
@@ -148,7 +148,7 @@ function Index() {
       </header>
 
       <main id="inicio">
-        <section className="relative isolate min-h-[640px] overflow-hidden bg-brand-navy lg:min-h-[630px]">
+        <section className="relative isolate min-h-[640px] overflow-hidden bg-brand-navy md:min-h-[500px] lg:min-h-[540px]">
           <img
             src={heroImage.url}
             alt="Almacén industrial refrigerado con puerta de cuarto frío"
@@ -157,19 +157,19 @@ function Index() {
             className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
           <div className="absolute inset-0 -z-10 bg-brand-navy/75" />
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_480px] lg:px-10 lg:py-28">
+          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(320px,40%)] md:items-center md:py-12 lg:gap-14 lg:px-10 lg:py-16">
             <div className="flex max-w-2xl flex-col justify-center text-primary-foreground">
               <p className="mb-4 max-w-md text-base font-medium leading-tight text-primary-foreground/90">
                 Construcción de cuartos fríos para negocios en Monterrey y el norte del país.
               </p>
-              <h1 className="max-w-3xl text-balance font-display text-5xl font-black leading-[0.94] sm:text-6xl lg:text-7xl">
+              <h1 className="max-w-3xl text-balance font-display text-5xl font-black leading-[0.94] md:text-[2.65rem] lg:text-6xl xl:text-7xl">
                 Construimos el cuarto frío que tu producto necesita.
               </h1>
               <p className="mt-4 max-w-xl text-lg font-medium leading-tight text-primary-foreground/95">
                 Diseñamos y construimos cuartos de conservación y congelación a la medida de tu
                 espacio, tu volumen de producto y operación diaria.
               </p>
-              <div className="mt-12 flex flex-col gap-7 sm:flex-row sm:items-end">
+              <div className="mt-9 flex flex-col gap-5 lg:flex-row lg:items-end">
                 <Button asChild variant="whatsapp" size="xl" className="w-fit px-10 font-extrabold">
                   <a href={whatsappUrl} target="_blank" rel="noreferrer">
                     Cotiza por Whatsapp
@@ -184,7 +184,7 @@ function Index() {
             <form
               id="cotizacion"
               onSubmit={handleSubmit}
-              className="self-center rounded-2xl bg-card p-7 shadow-cold-lg sm:p-8"
+              className="w-full self-center rounded-2xl bg-card p-6 shadow-cold-lg lg:p-8"
             >
               <h2 className="text-3xl font-black leading-tight text-brand-navy">
                 Solicita tu cotización
@@ -192,7 +192,7 @@ function Index() {
               <p className="mt-2 text-base font-medium text-card-foreground">
                 ¿Listo para transformar el futuro de tu negocio?
               </p>
-              <div className="mt-9 space-y-4">
+              <div className="mt-7 space-y-3 lg:mt-9 lg:space-y-4">
                 <Input
                   name="name"
                   required
