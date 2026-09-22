@@ -139,12 +139,13 @@ function Index() {
           <div className="flex shrink-0 items-center gap-3 sm:gap-8">
             <a
               href="tel:+528125947679"
-              className="hidden items-center gap-2 text-sm font-extrabold text-brand-deep sm:flex"
+              aria-label="Llamar a Frioequipos al 8125947679"
+              className="flex items-center gap-2 text-sm font-extrabold text-brand-deep"
             >
               <span className="flex size-9 items-center justify-center rounded-full bg-brand-deep text-primary-foreground">
                 <Phone className="size-5" aria-hidden="true" />
               </span>
-              8125947679
+              <span className="hidden min-[430px]:inline">8125947679</span>
             </a>
             <Button asChild variant="whatsapp" size="lg" className="px-3 text-xs sm:px-6 sm:text-sm">
               <a href={whatsappUrl} target="_blank" rel="noreferrer">
