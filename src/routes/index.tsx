@@ -101,20 +101,31 @@ function Index() {
     document.getElementById("cotizacion")?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const name = String(formData.get("name") ?? "").trim();
-    const email = String(formData.get("email") ?? "").trim();
-    const need = String(formData.get("need") ?? "").trim();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "013a4b67-8c00-4509-aeeb-8cd724e2b7df");
+    formData.append("subject", "Solicitud de cotización desde frioequipos.com");
 
-    const subject = encodeURIComponent("Solicitud de cotización desde frioequipos.com");
-    const body = encodeURIComponent(
-      [`Nombre: ${name}`, `Correo: ${email}`, `Necesidad: ${need}`].join("\n"),
-    );
+    setStatus("Enviando tu solicitud...");
 
-    window.location.href = `mailto:contacto@frioequipos.com?subject=${subject}&body=${body}`;
-    setStatus("Tu solicitud está lista para enviarse a contacto@frioequipos.com.");
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("¡Gracias! Tu solicitud fue enviada, te contactaremos pronto.");
+        form.reset();
+      } else {
+        setStatus("Hubo un problema al enviar. Intenta de nuevo o contáctanos por WhatsApp.");
+      }
+    } catch (error) {
+      setStatus("Hubo un problema al enviar. Intenta de nuevo o contáctanos por WhatsApp.");
+    }
   };
 
   return (
