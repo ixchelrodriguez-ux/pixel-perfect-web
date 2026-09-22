@@ -6,20 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const heroImage = "/cold-storage-warehouse.png";
-const brandLogo = "/frioequipos-logo.png";
-const coverageMap = "/coverage-map.png";
-const roomInstallation = "/cold-room-installation.png";
-const uatLogo = "/uat-logo.jpg";
-const teneriasLogo = "/tenerias-logo.jpg";
-const casonaLogo = "/casona-santa-lucia-logo.jpg";
-const arenaLogo = "/arena-monterrey-logo.png";
-const bonafontLogo = "/bonafont-logo.png";
-const safiLogo = "/safi-logo.jpg";
-const diagnosticoIcon = "/diagnostico-icon.png";
-const cotizacionIcon = "/cotizacion-icon.png";
-const construccionIcon = "/construccion-icon.png";
-const entregaIcon = "/entrega-icon.png";
+import heroImage from "@/assets/cold-storage-warehouse.png";
+import brandLogo from "@/assets/frioequipos-logo.png";
+import coverageMap from "@/assets/coverage-map.png";
+import roomInstallation from "@/assets/cold-room-installation.png";
+import uatLogo from "@/assets/uat-logo.jpg";
+import teneriasLogo from "@/assets/tenerias-logo.jpg";
+import casonaLogo from "@/assets/casona-santa-lucia-logo.jpg";
+import arenaLogo from "@/assets/arena-monterrey-logo.png";
+import bonafontLogo from "@/assets/bonafont-logo.png";
+import safiLogo from "@/assets/safi-logo.jpg";
+import diagnosticoIcon from "@/assets/diagnostico-icon.png";
+import cotizacionIcon from "@/assets/cotizacion-icon.png";
+import construccionIcon from "@/assets/construccion-icon.png";
+import entregaIcon from "@/assets/entrega-icon.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
