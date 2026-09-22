@@ -265,11 +265,11 @@ function Index() {
                 Cuatro simples pasos para transformar tu negocio a uno más fuerte y confiable
               </p>
             </div>
-            <div className="grid border border-brand-line bg-card sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid border border-brand-line bg-card sm:grid-cols-2 md:grid-cols-4">
               {steps.map((step) => (
                 <article
                   key={step.number}
-                  className="flex min-h-[288px] flex-col border-b border-brand-line p-4 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b lg:min-h-[288px] lg:border-b-0 lg:border-r lg:[&:nth-child(odd)]:border-r lg:[&:nth-child(-n+2)]:border-b-0 lg:last:border-r-0"
+                  className="flex min-h-[288px] flex-col border-b border-brand-line p-4 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b md:min-h-[288px] md:border-b-0 md:border-r md:[&:nth-child(odd)]:border-r md:[&:nth-child(-n+2)]:border-b-0 md:last:border-r-0"
                 >
                   <p className="text-base font-black leading-none text-brand-deep">{step.number}</p>
                   <h3 className="mt-2 text-base font-extrabold leading-none text-brand-navy">{step.title}</h3>
