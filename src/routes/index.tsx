@@ -1,24 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin, Phone } from "lucide-react";
+import {
+  CircleDollarSign,
+  ClipboardList,
+  FileText,
+  Linkedin,
+  Phone,
+  Refrigerator,
+  Search,
+  Settings,
+  Snowflake,
+  Wrench,
+} from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-const heroImage = "/cold-storage-warehouse.png";
-const brandLogo = "/frioequipos-logo.png";
-const coverageMap = "/coverage-map.png";
-const roomInstallation = "/cold-room-installation.png";
-const uatLogo = "/uat-logo.jpg";
-const teneriasLogo = "/tenerias-logo.jpg";
-const casonaLogo = "/casona-santa-lucia-logo.jpg";
-const arenaLogo = "/arena-monterrey-logo.png";
-const bonafontLogo = "/bonafont-logo.png";
-const safiLogo = "/safi-logo.jpg";
-const diagnosticoIcon = "/diagnostico-icon.png";
-const cotizacionIcon = "/cotizacion-icon.png";
-const construccionIcon = "/construccion-icon.png";
-const entregaIcon = "/entrega-icon.png";
+import heroImage from "@/assets/cold-storage-warehouse.png.asset.json";
+import brandLogo from "@/assets/frioequipos-logo.png.asset.json";
+import coverageMap from "@/assets/coverage-map.png.asset.json";
+import roomInstallation from "@/assets/cold-room-installation.png.asset.json";
+import uatLogo from "@/assets/uat-logo.jpg.asset.json";
+import teneriasLogo from "@/assets/tenerias-logo.jpg.asset.json";
+import casonaLogo from "@/assets/casona-santa-lucia-logo.jpg.asset.json";
+import arenaLogo from "@/assets/arena-monterrey-logo.png.asset.json";
+import bonafontLogo from "@/assets/bonafont-logo.png.asset.json";
+import safiLogo from "@/assets/safi-logo.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,12 +56,12 @@ const whatsappText = encodeURIComponent(
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
 
 const clients = [
-  { name: "SAFI Royal Luxury Hotels", src: safiLogo, size: "max-w-[150px]" },
-  { name: "Bonafont", src: bonafontLogo, size: "max-w-[130px]" },
-  { name: "Arena Monterrey", src: arenaLogo, size: "max-w-[170px]" },
-  { name: "La Casona de Santa Lucía", src: casonaLogo, size: "max-w-[260px]" },
-  { name: "Tenerías", src: teneriasLogo, size: "max-w-[150px]" },
-  { name: "Universidad Autónoma de Tamaulipas", src: uatLogo, size: "max-w-[175px]" },
+  { name: "SAFI Royal Luxury Hotels", asset: safiLogo, size: "max-w-[150px]" },
+  { name: "Bonafont", asset: bonafontLogo, size: "max-w-[130px]" },
+  { name: "Arena Monterrey", asset: arenaLogo, size: "max-w-[170px]" },
+  { name: "La Casona de Santa Lucía", asset: casonaLogo, size: "max-w-[260px]" },
+  { name: "Tenerías", asset: teneriasLogo, size: "max-w-[150px]" },
+  { name: "Universidad Autónoma de Tamaulipas", asset: uatLogo, size: "max-w-[175px]" },
 ];
 
 const steps = [
@@ -62,41 +69,37 @@ const steps = [
     number: "1",
     title: "Diagnóstico",
     text: "Visitamos tu negocio, medimos y entendemos el volumen de tu producto y operación actual.",
-    icon: diagnosticoIcon,
+    icon: ClipboardList,
+    accentIcon: Search,
   },
   {
     number: "2",
     title: "Cotización",
     text: "Te entregamos una propuesta técnica con capacidad, materiales y costo de inversión.",
-    icon: cotizacionIcon,
+    icon: FileText,
+    accentIcon: CircleDollarSign,
   },
   {
     number: "3",
     title: "Construcción",
     text: "Instalamos y construimos con las medidas y tiempos acordados en un inicio.",
-    icon: construccionIcon,
+    icon: Settings,
+    accentIcon: Wrench,
   },
   {
     number: "4",
     title: "Entrega",
     text: "Dejamos el cuarto operando y capacitamos a tu equipo para usarlo desde el primer día.",
-    icon: entregaIcon,
+    icon: Refrigerator,
+    accentIcon: Snowflake,
   },
 ];
 
 const proofItems = [
-  { title: "+50 años", copy: "de experiencia en refrigeración industrial.", dark: false },
-  {
-    title: "Grandes marcas confían en nosotros",
-    copy: "Universidades, hoteles, restaurantes y empresas ya operan con Frioequipos.",
-    dark: true,
-  },
-  { title: "Diseño, obra y mantenimiento", copy: "un mismo equipo encargándose de tu proyecto.", dark: true },
-  {
-    title: "Estándares de calidad",
-    copy: "Instalaciones para la Certificación TIF o el Distintivo H.",
-    dark: false,
-  },
+  ["+50 años", "de experiencia en refrigeración industrial."],
+  ["Grandes marcas confían en nosotros", "Universidades, hoteles, restaurantes y empresas ya operan con Frioequipos."],
+  ["Diseño, obra y mantenimiento", "un mismo equipo encargándose de tu proyecto."],
+  ["Estándares de calidad", "Instalaciones para la Certificación TIF o el Distintivo H."],
 ];
 
 function Index() {
@@ -129,7 +132,7 @@ function Index() {
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
         <div className="mx-auto grid min-h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:flex sm:justify-between sm:px-8 lg:px-10">
           <a href="#inicio" className="flex min-w-0 items-center gap-2" aria-label="Frioequipos inicio">
-            <img src={brandLogo} alt="Frioequipos Cuartos Fríos" className="h-auto w-44 sm:w-52" />
+            <img src={brandLogo.url} alt="Frioequipos Cuartos Fríos" className="h-auto w-44 sm:w-52" />
           </a>
 
           <div className="flex shrink-0 items-center gap-3 sm:gap-8">
@@ -155,7 +158,7 @@ function Index() {
       <main id="inicio">
         <section className="relative isolate min-h-[640px] overflow-hidden bg-brand-navy md:min-h-[500px] lg:min-h-[540px]">
           <img
-            src={heroImage}
+            src={heroImage.url}
             alt="Almacén industrial refrigerado con puerta de cuarto frío"
             width={1600}
             height={900}
@@ -241,7 +244,7 @@ function Index() {
                   className="flex items-center justify-center"
                 >
                   <img
-                    src={client.src}
+                    src={client.asset.url}
                     alt={client.name}
                     loading="lazy"
                     className={`h-auto w-full object-contain ${client.size}`}
@@ -262,23 +265,21 @@ function Index() {
                 Cuatro simples pasos para transformar tu negocio a uno más fuerte y confiable
               </p>
             </div>
-            <div className="grid border border-brand-line bg-card sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid border border-brand-line bg-card sm:grid-cols-2 md:grid-cols-4">
               {steps.map((step) => (
                 <article
                   key={step.number}
-                  className="flex min-h-[288px] flex-col border-b border-brand-line p-4 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b lg:min-h-[288px] lg:border-b-0 lg:border-r lg:[&:nth-child(odd)]:border-r lg:[&:nth-child(-n+2)]:border-b-0 lg:last:border-r-0"
+                  className="flex min-h-[288px] flex-col border-b border-brand-line p-4 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b md:min-h-[288px] md:border-b-0 md:border-r md:[&:nth-child(odd)]:border-r md:[&:nth-child(-n+2)]:border-b-0 md:last:border-r-0"
                 >
                   <p className="text-base font-black leading-none text-brand-deep">{step.number}</p>
                   <h3 className="mt-2 text-base font-extrabold leading-none text-brand-navy">{step.title}</h3>
                   <p className="mt-4 max-w-[13rem] text-xs font-medium leading-[0.95] text-card-foreground sm:min-h-[3.5rem]">
                     {step.text}
                   </p>
-                  <img
-                    src={step.icon}
-                    alt=""
-                    aria-hidden="true"
-                    className="mt-auto size-20 self-center object-contain"
-                  />
+                  <div className="relative mt-auto size-20 self-center text-brand-deep" aria-hidden="true">
+                    <step.icon className="absolute inset-2 size-16 stroke-[1.5]" />
+                    <step.accentIcon className="absolute bottom-0 left-0 size-9 fill-card stroke-[1.5]" />
+                  </div>
                 </article>
               ))}
             </div>
@@ -305,27 +306,10 @@ function Index() {
               </div>
             </div>
             <div className="grid border border-brand-line bg-brand-panel sm:grid-cols-2">
-              {proofItems.map((item) => (
-                <article
-                  key={item.title}
-                  className={`min-h-36 border-b border-brand-line p-6 sm:border-r sm:even:border-r-0 [&:nth-last-child(-n+2)]:sm:border-b-0 ${
-                    item.dark ? "bg-brand-navy" : "bg-brand-panel"
-                  }`}
-                >
-                  <h3
-                    className={`text-2xl font-black leading-none ${
-                      item.dark ? "text-primary-foreground" : "text-brand-navy"
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-                  <p
-                    className={`mt-3 text-base font-medium leading-tight ${
-                      item.dark ? "text-primary-foreground/90" : "text-card-foreground"
-                    }`}
-                  >
-                    {item.copy}
-                  </p>
+              {proofItems.map(([title, copy]) => (
+                <article key={title} className="min-h-36 border-b border-brand-line p-6 sm:border-r sm:even:border-r-0 [&:nth-last-child(-n+2)]:sm:border-b-0">
+                  <h3 className="text-2xl font-black leading-none text-brand-navy">{title}</h3>
+                  <p className="mt-3 text-base font-medium leading-tight text-card-foreground">{copy}</p>
                 </article>
               ))}
             </div>
@@ -352,7 +336,7 @@ function Index() {
         <section className="bg-brand-panel py-16 sm:py-24">
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 md:grid-cols-[360px_1fr]">
             <img
-              src={coverageMap}
+              src={coverageMap.url}
               alt="Cobertura de Frioequipos en el norte de México"
               width={285}
               height={482}
@@ -393,7 +377,7 @@ function Index() {
           </div>
           <div className="grid min-h-[350px] grid-cols-2">
             <img
-              src={heroImage}
+              src={heroImage.url}
               alt="Cuarto frío con puertas dobles instalado"
               width={928}
               height={720}
@@ -401,7 +385,7 @@ function Index() {
               className="h-full min-h-[350px] w-full object-cover"
             />
             <img
-              src={roomInstallation}
+              src={roomInstallation.url}
               alt="Interior de cuarto frío con unidades de refrigeración"
               width={928}
               height={720}
@@ -428,4 +412,3 @@ function Index() {
     </div>
   );
 }
-
