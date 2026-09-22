@@ -1,16 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  CircleDollarSign,
-  ClipboardList,
-  FileText,
-  Linkedin,
-  Phone,
-  Refrigerator,
-  Search,
-  Settings,
-  Snowflake,
-  Wrench,
-} from "lucide-react";
+import { Linkedin, Phone } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -26,6 +15,10 @@ import casonaLogo from "@/assets/casona-santa-lucia-logo.jpg.asset.json";
 import arenaLogo from "@/assets/arena-monterrey-logo.png.asset.json";
 import bonafontLogo from "@/assets/bonafont-logo.png.asset.json";
 import safiLogo from "@/assets/safi-logo.jpg.asset.json";
+import diagnosticoIcon from "@/assets/step-diagnostico.png.asset.json";
+import cotizacionIcon from "@/assets/step-cotizacion.png.asset.json";
+import construccionIcon from "@/assets/step-construccion.png.asset.json";
+import entregaIcon from "@/assets/step-entrega.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,29 +62,25 @@ const steps = [
     number: "1",
     title: "Diagnóstico",
     text: "Visitamos tu negocio, medimos y entendemos el volumen de tu producto y operación actual.",
-    icon: ClipboardList,
-    accentIcon: Search,
+    icon: diagnosticoIcon,
   },
   {
     number: "2",
     title: "Cotización",
     text: "Te entregamos una propuesta técnica con capacidad, materiales y costo de inversión.",
-    icon: FileText,
-    accentIcon: CircleDollarSign,
+    icon: cotizacionIcon,
   },
   {
     number: "3",
     title: "Construcción",
     text: "Instalamos y construimos con las medidas y tiempos acordados en un inicio.",
-    icon: Settings,
-    accentIcon: Wrench,
+    icon: construccionIcon,
   },
   {
     number: "4",
     title: "Entrega",
     text: "Dejamos el cuarto operando y capacitamos a tu equipo para usarlo desde el primer día.",
-    icon: Refrigerator,
-    accentIcon: Snowflake,
+    icon: entregaIcon,
   },
 ];
 
@@ -257,7 +246,7 @@ function Index() {
 
         <section className="bg-brand-panel py-12 sm:py-14">
           <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
-            <div className="mb-6">
+            <div className="mb-7">
               <h2 className="text-balance text-[1.7rem] font-black leading-none text-brand-navy sm:text-[2rem]">
                 Así se construye tu cuarto frío
               </h2>
@@ -269,17 +258,19 @@ function Index() {
               {steps.map((step) => (
                 <article
                   key={step.number}
-                  className="flex min-h-[288px] flex-col border-b border-brand-line p-4 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b md:min-h-[288px] md:border-b-0 md:border-r md:[&:nth-child(odd)]:border-r md:[&:nth-child(-n+2)]:border-b-0 md:last:border-r-0"
+                  className="flex min-h-[288px] flex-col border-b border-brand-line px-5 py-6 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b md:min-h-[288px] md:border-b-0 md:border-r md:[&:nth-child(odd)]:border-r md:[&:nth-child(-n+2)]:border-b-0 md:last:border-r-0"
                 >
                   <p className="text-base font-black leading-none text-brand-deep">{step.number}</p>
                   <h3 className="mt-2 text-base font-extrabold leading-none text-brand-navy">{step.title}</h3>
-                  <p className="mt-4 max-w-[13rem] text-xs font-medium leading-[0.95] text-card-foreground sm:min-h-[3.5rem]">
+                  <p className="mt-5 max-w-[14rem] text-xs font-medium leading-[0.95] text-card-foreground sm:min-h-[3.5rem]">
                     {step.text}
                   </p>
-                  <div className="relative mt-auto size-20 self-center text-brand-deep" aria-hidden="true">
-                    <step.icon className="absolute inset-2 size-16 stroke-[1.5]" />
-                    <step.accentIcon className="absolute bottom-0 left-0 size-9 fill-card stroke-[1.5]" />
-                  </div>
+                  <img
+                    src={step.icon.url}
+                    alt=""
+                    className="mt-auto h-[88px] w-[88px] self-center object-contain"
+                    aria-hidden="true"
+                  />
                 </article>
               ))}
             </div>
