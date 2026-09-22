@@ -1,11 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  CircleDollarSign,
   ClipboardList,
-  ReceiptText,
+  FileText,
   Linkedin,
   Phone,
   Refrigerator,
+  Search,
   Settings,
+  Snowflake,
+  Wrench,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
@@ -66,24 +70,28 @@ const steps = [
     title: "Diagnóstico",
     text: "Visitamos tu negocio, medimos y entendemos el volumen de tu producto y operación actual.",
     icon: ClipboardList,
+    accentIcon: Search,
   },
   {
     number: "2",
     title: "Cotización",
     text: "Te entregamos una propuesta técnica con capacidad, materiales y costo de inversión.",
-    icon: ReceiptText,
+    icon: FileText,
+    accentIcon: CircleDollarSign,
   },
   {
     number: "3",
     title: "Construcción",
     text: "Instalamos y construimos con las medidas y tiempos acordados en un inicio.",
     icon: Settings,
+    accentIcon: Wrench,
   },
   {
     number: "4",
     title: "Entrega",
     text: "Dejamos el cuarto operando y capacitamos a tu equipo para usarlo desde el primer día.",
     icon: Refrigerator,
+    accentIcon: Snowflake,
   },
 ];
 
@@ -268,7 +276,10 @@ function Index() {
                   <p className="mt-4 max-w-[13rem] text-xs font-medium leading-[0.95] text-card-foreground sm:min-h-[3.5rem]">
                     {step.text}
                   </p>
-                  <step.icon className="mt-auto size-20 self-center stroke-[1.5] text-brand-deep" aria-hidden="true" />
+                  <div className="relative mt-auto size-20 self-center text-brand-deep" aria-hidden="true">
+                    <step.icon className="absolute inset-2 size-16 stroke-[1.5]" />
+                    <step.accentIcon className="absolute bottom-0 left-0 size-9 fill-card stroke-[1.5]" />
+                  </div>
                 </article>
               ))}
             </div>
