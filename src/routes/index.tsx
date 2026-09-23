@@ -131,23 +131,23 @@ function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
-        <div className="mx-auto grid min-h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:flex sm:justify-between sm:px-8 lg:px-10">
+        <div className="mx-auto grid min-h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 sm:flex sm:justify-between sm:gap-4 sm:px-8 lg:px-10">
           <a href="#inicio" className="flex min-w-0 items-center gap-2" aria-label="Frioequipos inicio">
-            <img src={brandLogo} alt="Frioequipos Cuartos Fríos" className="h-auto w-44 sm:w-52" />
+            <img src={brandLogo} alt="Frioequipos Cuartos Fríos" className="h-auto w-28 sm:w-44 md:w-52" />
           </a>
 
-          <div className="flex shrink-0 items-center gap-3 sm:gap-8">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-8">
             <a
               href="tel:+528125947679"
               aria-label="Llamar a Frioequipos al 8125947679"
               className="flex items-center gap-2 text-sm font-extrabold text-brand-deep"
             >
-              <span className="flex size-9 items-center justify-center rounded-full bg-brand-deep text-primary-foreground">
-                <Phone className="size-5" aria-hidden="true" />
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-deep text-primary-foreground sm:size-9">
+                <Phone className="size-4 sm:size-5" aria-hidden="true" />
               </span>
               <span className="hidden min-[430px]:inline">8125947679</span>
             </a>
-            <Button asChild variant="whatsapp" size="lg" className="px-3 text-xs sm:px-6 sm:text-sm">
+            <Button asChild variant="whatsapp" size="lg" className="px-2.5 text-xs sm:px-6 sm:text-sm">
               <a href={whatsappUrl} target="_blank" rel="noreferrer">
                 <span className="hidden min-[430px]:inline">Cotización por Whatsapp</span>
                 <span className="min-[430px]:hidden">Whatsapp</span>
