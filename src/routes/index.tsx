@@ -218,6 +218,14 @@ function Index() {
                   aria-label="Correo"
                   className="h-12 rounded-xl bg-input text-base shadow-none placeholder:text-muted-foreground"
                 />
+                <Input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="Teléfono / WhatsApp"
+                  aria-label="Teléfono o WhatsApp"
+                  className="h-12 rounded-xl bg-input text-base shadow-none placeholder:text-muted-foreground"
+                />
                 <Textarea
                   name="need"
                   required
@@ -227,7 +235,7 @@ function Index() {
                 />
               </div>
               <Button variant="frio" size="xl" className="mt-7 px-7 text-base font-black" type="submit">
-                ENVIAR COTIZACIÓN
+                RECIBIR ASESORÍA
               </Button>
               {status ? <p className="mt-4 text-sm font-semibold text-brand-deep">{status}</p> : null}
             </form>
@@ -332,7 +340,7 @@ function Index() {
               </p>
             </div>
             <Button variant="frio" size="xl" className="w-fit px-10 font-extrabold" onClick={scrollToForm}>
-              Solicitar cotización
+              Recibir asesoría
             </Button>
           </div>
         </section>
@@ -375,7 +383,7 @@ function Index() {
                 </a>
               </Button>
               <Button variant="frio" size="xl" className="px-10 font-extrabold" onClick={scrollToForm}>
-                Solicitar cotización
+                Recibir asesoría
               </Button>
             </div>
           </div>
