@@ -13,7 +13,7 @@ import roomInstallation from "@/assets/cold-room-installation.png";
 import uatLogo from "@/assets/uat-logo.png";
 import teneriasLogo from "@/assets/tenerias-logo.png";
 import casonaLogo from "@/assets/casona-santa-lucia-logo.png";
-import arenaLogo from "@/assets/arena-monterrey-logo.png";
+import boruLogo from "@/assets/boru-logo.jpg";
 import bonafontLogo from "@/assets/bonafont-logo.png";
 import safiLogo from "@/assets/safi-logo.png";
 import diagnosticoIcon from "@/assets/diagnostico-icon.png";
@@ -52,7 +52,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
 const clients = [
   { name: "SAFI Royal Luxury Hotels", src: safiLogo, size: "max-w-[150px]" },
   { name: "Bonafont", src: bonafontLogo, size: "max-w-[130px]" },
-  { name: "Arena Monterrey", src: arenaLogo, size: "max-w-[170px]" },
+  { name: "Boru Pokes & Bowls", src: boruLogo, size: "max-w-[130px]" },
   { name: "La Casona de Santa Lucía", src: casonaLogo, size: "max-w-[260px]" },
   { name: "Tenerías", src: teneriasLogo, size: "max-w-[150px]" },
   { name: "Universidad Autónoma de Tamaulipas", src: uatLogo, size: "max-w-[175px]" },
