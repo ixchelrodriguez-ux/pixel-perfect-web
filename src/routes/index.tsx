@@ -48,6 +48,7 @@ const whatsappText = encodeURIComponent(
   "Hola, quiero cotizar un cuarto frío para mi negocio.",
 );
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
+const linkedinUrl = "https://www.linkedin.com/company/frioequipos/";
 
 const clients = [
   { name: "SAFI Royal Luxury Hotels", src: safiLogo, size: "max-w-[150px]" },
@@ -415,7 +416,7 @@ function Index() {
             <a href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="WhatsApp Frioequipos">
               <Phone className="size-6 text-accent" />
             </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn Frioequipos">
+            <a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="LinkedIn Frioequipos">
               <Linkedin className="size-6 text-primary-foreground" />
             </a>
           </div>
