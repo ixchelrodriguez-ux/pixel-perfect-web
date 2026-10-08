@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Linkedin, Phone } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,8 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 
 import heroImage from "@/assets/cold-storage-warehouse.png";
 import brandLogo from "@/assets/frioequipos-logo.png";
-import coverageMap from "@/assets/coverage-map.png";
-import roomInstallation from "@/assets/cold-room-installation.png";
 import uatLogo from "@/assets/uat-logo.png";
 import teneriasLogo from "@/assets/tenerias-logo.png";
 import casonaLogo from "@/assets/casona-santa-lucia-logo.png";
@@ -42,25 +39,30 @@ export const Route = createFileRoute("/")({
           "Especialistas en fabricación, instalación y mantenimiento de cuartos fríos y sistemas de refrigeración industrial en Nuevo León.",
       },
     ],
-    scripts: [
-      {
-        src: "https://www.googletagmanager.com/gtag/js?id=AW-18445447810",
-        async: true,
-      },
-      {
-        children: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-18445447810');
-        `,
-      },
-    ],
   }),
   component: Index,
 });
 
 function Index() {
+  // Cargar Google Tag dinámicamente sin errores de build
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const script1 = document.createElement("script");
+      script1.async = true;
+      script1.src = "https://www.googletagmanager.com/gtag/js?id=AW-18445447810";
+      document.head.appendChild(script1);
+
+      const script2 = document.createElement("script");
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18445447810');
+      `;
+      document.head.appendChild(script2);
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     nombre: "",
     empresa: "",
@@ -247,20 +249,3 @@ function Index() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <img src={brandLogo} alt="Frioequipos" className="h-8 w-auto brightness-200" />
-            <span className="text-sm font-semibold text-slate-300">Frioequipos Monterrey</span>
-          </div>
-          <div className="text-sm">
-            © {new Date().getFullYear()} Frioequipos. Todos los derechos reservados.
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
