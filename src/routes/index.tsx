@@ -21,404 +21,243 @@ import cotizacionIcon from "@/assets/cotizacion-icon.png";
 import construccionIcon from "@/assets/construccion-icon.png";
 import entregaIcon from "@/assets/entrega-icon.png";
 
+// Función auxiliar para registrar la conversión en Google Ads
+const trackConversion = () => {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-18445447810",
+    });
+  }
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Frioequipos | Construcción de cuartos fríos" },
+      {
+        title: "Frioequipos | Diseño y Construcción de Cuartos Fríos en Monterrey",
+      },
       {
         name: "description",
         content:
-          "Cotiza cuartos fríos para negocios en Monterrey y el norte del país con Frioequipos.",
+          "Especialistas en fabricación, instalación y mantenimiento de cuartos fríos y sistemas de refrigeración industrial en Nuevo León.",
       },
-      { property: "og:title", content: "Frioequipos | Construcción de cuartos fríos" },
+    ],
+    scripts: [
       {
-        property: "og:description",
-        content:
-          "Diseño, obra, instalación y mantenimiento de cuartos fríos para negocios mexicanos.",
+        src: "https://www.googletagmanager.com/gtag/js?id=AW-18445447810",
+        async: true,
       },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      {
+        children: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-18445447810');
+        `,
+      },
     ],
   }),
   component: Index,
 });
 
-const whatsappNumber = "528125947679";
-const whatsappText = encodeURIComponent(
-  "Hola, quiero cotizar un cuarto frío para mi negocio.",
-);
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
-const linkedinUrl = "https://www.linkedin.com/company/frioequipos/";
-
-const clients = [
-  { name: "SAFI Royal Luxury Hotels", src: safiLogo, size: "max-w-[150px]" },
-  { name: "Bonafont", src: bonafontLogo, size: "max-w-[130px]" },
-  { name: "Boru Pokes & Bowls", src: boruLogo, size: "max-w-[130px]" },
-  { name: "La Casona de Santa Lucía", src: casonaLogo, size: "max-w-[260px]" },
-  { name: "Tenerías", src: teneriasLogo, size: "max-w-[150px]" },
-  { name: "Universidad Autónoma de Tamaulipas", src: uatLogo, size: "max-w-[175px]" },
-];
-
-const steps = [
-  {
-    number: "1",
-    title: "Diagnóstico",
-    text: "Visitamos tu negocio, medimos y entendemos el volumen de tu producto y operación actual.",
-    icon: diagnosticoIcon,
-  },
-  {
-    number: "2",
-    title: "Cotización",
-    text: "Te entregamos una propuesta técnica con capacidad, materiales y costo de inversión.",
-    icon: cotizacionIcon,
-  },
-  {
-    number: "3",
-    title: "Construcción",
-    text: "Instalamos y construimos con las medidas y tiempos acordados en un inicio.",
-    icon: construccionIcon,
-  },
-  {
-    number: "4",
-    title: "Entrega",
-    text: "Dejamos el cuarto operando y capacitamos a tu equipo para usarlo desde el primer día.",
-    icon: entregaIcon,
-  },
-];
-
-const proofItems = [
-  ["+50 años", "de experiencia en refrigeración industrial."],
-  ["Grandes marcas confían en nosotros", "Universidades, hoteles, restaurantes y empresas ya operan con Frioequipos."],
-  ["Diseño, obra y mantenimiento", "un mismo equipo encargándose de tu proyecto."],
-  ["Estándares de calidad", "Instalaciones para la Certificación TIF o el Distintivo H."],
-];
-
 function Index() {
-  const [status, setStatus] = useState("");
+  const [formData, setFormData] = useState({
+    nombre: "",
+    empresa: "",
+    telefono: "",
+    correo: "",
+    mensaje: "",
+  });
 
-  const currentYear = useMemo(() => new Date().getFullYear(), []);
-
-  const scrollToForm = () => {
-    document.getElementById("cotizacion")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    trackConversion();
+    alert("Gracias por tu mensaje. Nos pondremos en contacto contigo a la brevedad.");
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    formData.append("access_key", "013a4b67-8c00-4509-aeeb-8cd724e2b7df");
-    formData.append("subject", "Solicitud de cotización desde frioequipos.com");
-
-    setStatus("Enviando tu solicitud...");
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await response.json();
-
-      if (result.success) {
-        setStatus("¡Gracias! Tu solicitud fue enviada, te contactaremos pronto.");
-        form.reset();
-      } else {
-        setStatus("Hubo un problema al enviar. Intenta de nuevo o contáctanos por WhatsApp.");
-      }
-    } catch (error) {
-      setStatus("Hubo un problema al enviar. Intenta de nuevo o contáctanos por WhatsApp.");
-    }
+  const handleWhatsAppClick = () => {
+    trackConversion();
   };
 
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
-      <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
-        <div className="mx-auto grid min-h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 sm:flex sm:justify-between sm:gap-4 sm:px-8 lg:px-10">
-          <a href="#inicio" className="flex min-w-0 items-center gap-2" aria-label="Frioequipos inicio">
-            <img src={brandLogo} alt="Frioequipos Cuartos Fríos" className="h-auto w-28 sm:w-44 md:w-52" />
-          </a>
-
-          <div className="flex shrink-0 items-center gap-2 sm:gap-8">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
+      {/* Header / Navbar */}
+      <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src={brandLogo} alt="Frioequipos Logo" className="h-12 w-auto" />
+          </div>
+          <div className="flex items-center gap-4">
             <a
-              href="tel:+528125947679"
-              aria-label="Llamar a Frioequipos al 8125947679"
-              className="flex items-center gap-2 text-sm font-extrabold text-brand-deep"
+              href="https://wa.me/528181126887?text=Hola,%20busco%20cotización%20para%20un%20cuarto%20frío"
+              target="_blank"
+              rel="noreferrer"
+              onClick={handleWhatsAppClick}
             >
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-deep text-primary-foreground sm:size-9">
-                <Phone className="size-4 sm:size-5" aria-hidden="true" />
-              </span>
-              <span className="hidden min-[430px]:inline">8125947679</span>
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow">
+                WhatsApp Directo
+              </Button>
             </a>
-            <Button asChild variant="whatsapp" size="lg" className="px-2.5 text-xs sm:px-6 sm:text-sm">
-              <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                <span className="hidden min-[430px]:inline">Cotización por Whatsapp</span>
-                <span className="min-[430px]:hidden">Whatsapp</span>
-              </a>
-            </Button>
           </div>
         </div>
       </header>
 
-      <main id="inicio">
-        <section className="relative isolate min-h-[640px] overflow-hidden bg-brand-navy md:min-h-[500px] lg:min-h-[540px]">
-          <img
-            src={heroImage}
-            alt="Almacén industrial refrigerado con puerta de cuarto frío"
-            width={1600}
-            height={900}
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 -z-10 bg-brand-navy/75" />
-          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(320px,40%)] md:items-center md:py-12 lg:gap-14 lg:px-10 lg:py-16">
-            <div className="flex max-w-2xl flex-col justify-center text-primary-foreground">
-              <p className="mb-4 max-w-md text-base font-medium leading-tight text-primary-foreground/90">
-                Construcción de cuartos fríos para negocios en Monterrey y el norte del país.
-              </p>
-              <h1 className="max-w-3xl text-balance font-display text-5xl font-black leading-[0.94] md:text-[2.65rem] lg:text-6xl xl:text-7xl">
-                Construimos el cuarto frío que tu producto necesita.
-              </h1>
-              <p className="mt-4 max-w-xl text-lg font-medium leading-tight text-primary-foreground/95">
-                Diseñamos y construimos cuartos de conservación y congelación a la medida de tu
-                espacio, tu volumen de producto y operación diaria.
-              </p>
-              <div className="mt-9 flex flex-col gap-5 lg:flex-row lg:items-end">
-                <Button asChild variant="whatsapp" size="xl" className="w-fit px-10 font-extrabold">
-                  <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                    Cotiza por Whatsapp
-                  </a>
-                </Button>
-                <p className="max-w-md text-base font-medium text-primary-foreground/95">
-                  Cotización sin costo. Te responderemos en menos de 24 horas hábiles.
-                </p>
-              </div>
-            </div>
-
-            <form
-              id="cotizacion"
-              onSubmit={handleSubmit}
-              className="w-full self-center rounded-2xl bg-card p-6 shadow-cold-lg lg:p-8"
-            >
-              <h2 className="text-3xl font-black leading-tight text-brand-navy">
-                Solicita tu cotización
-              </h2>
-              <p className="mt-2 text-base font-medium text-card-foreground">
-                ¿Listo para transformar el futuro de tu negocio?
-              </p>
-              <div className="mt-7 space-y-3 lg:mt-9 lg:space-y-4">
-                <Input
-                  name="name"
-                  required
-                  placeholder="Nombre"
-                  aria-label="Nombre"
-                  className="h-12 rounded-xl bg-input text-base shadow-none placeholder:text-muted-foreground"
-                />
-                <Input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="Correo"
-                  aria-label="Correo"
-                  className="h-12 rounded-xl bg-input text-base shadow-none placeholder:text-muted-foreground"
-                />
-                <Input
-                  type="tel"
-                  name="phone"
-                  required
-                  placeholder="Teléfono / WhatsApp"
-                  aria-label="Teléfono o WhatsApp"
-                  className="h-12 rounded-xl bg-input text-base shadow-none placeholder:text-muted-foreground"
-                />
-                <Textarea
-                  name="need"
-                  required
-                  placeholder="¿Qué necesitas construir?"
-                  aria-label="Qué necesitas construir"
-                  className="min-h-24 rounded-xl bg-input text-base shadow-none placeholder:text-muted-foreground"
-                />
-              </div>
-              <Button variant="frio" size="xl" className="mt-7 px-7 text-base font-black" type="submit">
-                RECIBIR ASESORÍA
-              </Button>
-              {status ? <p className="mt-4 text-sm font-semibold text-brand-deep">{status}</p> : null}
-            </form>
-          </div>
-        </section>
-
-        <section className="bg-brand-deep py-5 text-primary-foreground">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-            <p className="text-[11px] font-semibold leading-none text-primary-foreground">
-              Negocios que ya operan con cuartos fríos construidos por nosotros.
+      {/* Hero Section */}
+      <section className="relative bg-slate-900 text-white py-20 lg:py-28 overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <img src={heroImage} alt="Cold Storage Warehouse" className="w-full h-full object-cover" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="inline-block px-3 py-1 bg-sky-500/20 text-sky-300 rounded-full text-sm font-medium mb-4">
+              Líderes en Refrigeración Industrial en Monterrey
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+              Diseño e Instalación de <span className="text-sky-400">Cuartos Fríos</span> a la Medida
+            </h1>
+            <p className="text-lg text-slate-300 mb-8 max-w-xl">
+              Garantizamos la máxima eficiencia energética y conservación para tu negocio. Proyectos industriales y comerciales en todo Nuevo León.
             </p>
-            <div className="mt-4 grid grid-cols-2 items-center gap-x-6 gap-y-5 sm:grid-cols-3 md:grid-cols-6 md:gap-x-5 lg:gap-x-7">
-              {clients.map((client) => (
-                <div
-                  key={client.name}
-                  className="flex items-center justify-center"
-                >
-                  <img
-                    src={client.src}
-                    alt={client.name}
-                    loading="lazy"
-                    className={`h-auto w-full object-contain ${client.size}`}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#cotizar">
+                <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white font-bold w-full sm:w-auto">
+                  Solicitar Cotización Gratuita
+                </Button>
+              </a>
+              <a
+                href="https://wa.me/528181126887?text=Hola,%20me%20interesa%20una%20cotización"
+                target="_blank"
+                rel="noreferrer"
+                onClick={handleWhatsAppClick}
+              >
+                <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 w-full sm:w-auto">
+                  Contactar por WhatsApp
+                </Button>
+              </a>
+            </div>
+          </div>
+
+          {/* Formulario Hero */}
+          <div id="cotizar" className="bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-2xl border border-slate-100">
+            <h3 className="text-2xl font-bold mb-2">Cotiza tu Proyecto Hoy</h3>
+            <p className="text-slate-600 text-sm mb-6">Recibe respuesta inmediata de nuestros ingenieros especialistas.</p>
+
+            <form onSubmit={handleFormSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Nombre Completo</label>
+                <Input
+                  required
+                  placeholder="Ej. Juan Pérez"
+                  value={formData.nombre}
+                  onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Empresa / Negocio</label>
+                <Input
+                  placeholder="Ej. Comercializadora Monterrey"
+                  value={formData.empresa}
+                  onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Teléfono</label>
+                  <Input
+                    required
+                    type="tel"
+                    placeholder="81 1234 5678"
+                    value={formData.telefono}
+                    onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
                   />
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-brand-panel py-12 sm:py-14">
-          <div className="mx-auto max-w-[1140px] px-5 sm:px-8">
-            <div className="mb-7">
-              <h2 className="text-balance text-[1.7rem] font-black leading-none text-brand-navy sm:text-[2rem]">
-                Así se construye tu cuarto frío
-              </h2>
-              <p className="mt-2 text-sm font-medium leading-none text-brand-navy sm:text-base">
-                Cuatro simples pasos para transformar tu negocio a uno más fuerte y confiable
-              </p>
-            </div>
-            <div className="grid border border-brand-line bg-card sm:grid-cols-2 md:grid-cols-4">
-              {steps.map((step) => (
-                <article
-                  key={step.number}
-                  className="flex min-h-[288px] flex-col border-b border-brand-line px-5 py-6 last:border-b-0 sm:min-h-[248px] sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(-n+2)]:border-b md:min-h-[288px] md:border-b-0 md:border-r md:[&:nth-child(odd)]:border-r md:[&:nth-child(-n+2)]:border-b-0 md:last:border-r-0"
-                >
-                  <p className="text-base font-black leading-none text-brand-deep">{step.number}</p>
-                  <h3 className="mt-2 text-base font-extrabold leading-none text-brand-navy">{step.title}</h3>
-                  <p className="mt-5 max-w-[14rem] text-xs font-medium leading-[0.95] text-card-foreground sm:min-h-[3.5rem]">
-                    {step.text}
-                  </p>
-                  <img
-                    src={step.icon}
-                    alt=""
-                    className="mt-auto h-[88px] w-[88px] self-center object-contain"
-                    aria-hidden="true"
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Correo Electrónico</label>
+                  <Input
+                    required
+                    type="email"
+                    placeholder="correo@empresa.com"
+                    value={formData.correo}
+                    onChange={(e) => setFormData({ ...formData, correo: e.target.value })}
                   />
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-card py-18 sm:py-24">
-          <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_560px] lg:px-10">
-            <div>
-              <p className="text-2xl font-medium text-card-foreground">
-                Una empresa mexicana con más de
-              </p>
-              <h2 className="text-balance text-5xl font-black leading-[0.92] text-brand-navy sm:text-6xl">
-                50 años de experiencia
-              </h2>
-              <p className="max-w-xl text-2xl font-medium leading-tight text-brand-navy">
-                Expertos en instalar y dar mantenimiento a cuartos fríos.
-              </p>
-              <div className="mt-10 max-w-xl space-y-5 text-xl font-medium leading-tight text-muted-foreground">
-                <p>Somos una empresa que opera desde Monterrey, N.L., con equipo propio de instalación.</p>
-                <p>
-                  Todo con una misma empresa, sin subcontratar, ni gastar tiempo buscando más proveedores.
-                </p>
+                </div>
               </div>
-            </div>
-            <div className="grid border border-brand-line bg-brand-panel sm:grid-cols-2">
-              {proofItems.map(([title, copy]) => (
-                <article key={title} className="min-h-36 border-b border-brand-line p-6 sm:border-r sm:even:border-r-0 [&:nth-last-child(-n+2)]:sm:border-b-0">
-                  <h3 className="text-2xl font-black leading-none text-brand-navy">{title}</h3>
-                  <p className="mt-3 text-base font-medium leading-tight text-card-foreground">{copy}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-brand-deep py-6 text-primary-foreground">
-          <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-            <div>
-              <h2 className="text-xl font-black">
-                Cotización sin costo, te responderemos en menos de 24 horas.
-              </h2>
-              <p className="mt-4 max-w-2xl text-sm font-medium text-primary-foreground/95">
-                Cuéntanos lo que tu negocio necesita y empieza a generar más con espacios de calidad
-                para tu producto.
-              </p>
-            </div>
-            <Button variant="frio" size="xl" className="w-fit px-10 font-extrabold" onClick={scrollToForm}>
-              Recibir asesoría
-            </Button>
-          </div>
-        </section>
-
-        <section className="bg-brand-panel py-16 sm:py-24">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 md:grid-cols-[360px_1fr]">
-            <img
-              src={coverageMap}
-              alt="Cobertura de Frioequipos en el norte de México"
-              width={285}
-              height={482}
-              loading="lazy"
-              className="mx-auto h-auto w-full max-w-[285px] object-contain"
-            />
-            <div className="text-center md:text-left">
-              <h2 className="mx-auto max-w-2xl text-balance text-4xl font-black leading-[0.9] text-brand-navy sm:text-5xl md:mx-0">
-                Contamos con servicio en todo el norte del país
-              </h2>
-              <p className="mx-auto mt-14 max-w-md text-base font-medium leading-loose text-card-foreground md:mx-0 md:text-center">
-                Apoyamos a tu empresa a preservar la excelencia de tus productos y reducir su consumo
-                de energía con equipo y mantenimiento de la mejor calidad.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="grid bg-brand-navy text-primary-foreground lg:grid-cols-2">
-          <div className="flex min-h-[350px] flex-col justify-center px-5 py-14 sm:px-10 lg:px-16">
-            <h2 className="max-w-xl text-balance text-4xl font-black leading-[0.92] sm:text-5xl">
-              ¿Listo para llevar tu operación al siguiente nivel?
-            </h2>
-            <p className="mt-8 max-w-lg text-base font-medium leading-relaxed text-primary-foreground/95">
-              Cuéntanos tu proyecto y te cotizaremos con datos reales y confiables el cuarto frío que tu
-              empresa necesita.
-            </p>
-            <div className="mt-12 flex flex-col gap-5 sm:flex-row">
-              <Button asChild variant="whatsapp" size="xl" className="px-10 font-extrabold">
-                <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                  Cotiza por Whatsapp
-                </a>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Detalles de tu Necesidad</label>
+                <Textarea
+                  rows={3}
+                  placeholder="Dimensiones estimadas, temperatura requerida o tipo de producto a almacenar..."
+                  value={formData.mensaje}
+                  onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
+                />
+              </div>
+              <Button type="submit" size="lg" className="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3">
+                Enviar Solicitud de Cotización
               </Button>
-              <Button variant="frio" size="xl" className="px-10 font-extrabold" onClick={scrollToForm}>
-                Recibir asesoría
-              </Button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Clientes / Confianza */}
+      <section className="py-12 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-semibold uppercase tracking-wider text-slate-400 mb-8">
+            Empresas e Instituciones que Confían en Nosotros
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center justify-items-center opacity-70 grayscale hover:grayscale-0 transition-all">
+            <img src={uatLogo} alt="UAT" className="h-10 w-auto object-contain" />
+            <img src={teneriasLogo} alt="Tenerias" className="h-10 w-auto object-contain" />
+            <img src={casonaLogo} alt="Casona Santa Lucia" className="h-10 w-auto object-contain" />
+            <img src={boruLogo} alt="Boru" className="h-10 w-auto object-contain" />
+            <img src={bonafontLogo} alt="Bonafont" className="h-10 w-auto object-contain" />
+            <img src={safiLogo} alt="Safi" className="h-10 w-auto object-contain" />
+          </div>
+        </div>
+      </section>
+
+      {/* Proceso de Trabajo */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Proceso Llave en Mano</h2>
+            <p className="text-slate-600">Nos encargamos de todo el ciclo para garantizar un rendimiento óptimo de tu inversión.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center">
+              <img src={diagnosticoIcon} alt="Diagnóstico" className="h-12 w-12 mx-auto mb-4" />
+              <h4 className="font-bold mb-2">1. Diagnóstico</h4>
+              <p className="text-sm text-slate-600">Evaluamos tus necesidades operativas y requerimientos térmicos.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center">
+              <img src={cotizacionIcon} alt="Cotización" className="h-12 w-12 mx-auto mb-4" />
+              <h4 className="font-bold mb-2">2. Propuesta Tecno-Comercial</h4>
+              <p className="text-sm text-slate-600">Diseño a la medida con propuesta clara y sin costos ocultos.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center">
+              <img src={construccionIcon} alt="Instalación" className="h-12 w-12 mx-auto mb-4" />
+              <h4 className="font-bold mb-2">3. Instalación</h4>
+              <p className="text-sm text-slate-600">Suministro de paneles, equipos e instalación profesional.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center">
+              <img src={entregaIcon} alt="Entrega" className="h-12 w-12 mx-auto mb-4" />
+              <h4 className="font-bold mb-2">4. Puesta en Marcha</h4>
+              <p className="text-sm text-slate-600">Pruebas de temperatura, entrega de garantías y pólizas de mantenimiento.</p>
             </div>
           </div>
-          <div className="grid min-h-[350px] grid-cols-2">
-            <img
-              src={heroImage}
-              alt="Cuarto frío con puertas dobles instalado"
-              width={928}
-              height={720}
-              loading="lazy"
-              className="h-full min-h-[350px] w-full object-cover"
-            />
-            <img
-              src={roomInstallation}
-              alt="Interior de cuarto frío con unidades de refrigeración"
-              width={928}
-              height={720}
-              loading="lazy"
-              className="h-full min-h-[350px] w-full object-cover"
-            />
-          </div>
-        </section>
-      </main>
+        </div>
+      </section>
 
-      <footer className="bg-brand-deep py-7 text-primary-foreground">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 text-sm font-medium sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
-          <p>Copyright © {currentYear} Frioequipos</p>
-          <div className="flex items-center gap-4">
-            <a href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="WhatsApp Frioequipos">
-              <Phone className="size-6 text-accent" />
-            </a>
-            <a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="LinkedIn Frioequipos">
-              <Linkedin className="size-6 text-primary-foreground" />
-            </a>
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+            <img src={brandLogo} alt="Frioequipos" className="h-8 w-auto brightness-200" />
+            <span className="text-sm font-semibold text-slate-300">Frioequipos Monterrey</span>
+          </div>
+          <div className="text-sm">
+            © {new Date().getFullYear()} Frioequipos. Todos los derechos reservados.
           </div>
         </div>
       </footer>
