@@ -353,7 +353,7 @@ function Index() {
               alt="Cobertura de Frioequipos en el norte de México"
               width={285}
               height={482}
-              loading="lazy"
+              loading="eager"
               className="mx-auto h-auto w-full max-w-[285px] object-contain"
             />
             <div className="text-center md:text-left">
@@ -394,7 +394,7 @@ function Index() {
               alt="Cuarto frío con puertas dobles instalado"
               width={928}
               height={720}
-              loading="lazy"
+              loading="eager"
               className="h-full min-h-[350px] w-full object-cover"
             />
             <img
@@ -402,7 +402,7 @@ function Index() {
               alt="Interior de cuarto frío con unidades de refrigeración"
               width={928}
               height={720}
-              loading="lazy"
+              loading="eager"
               className="h-full min-h-[350px] w-full object-cover"
             />
           </div>
