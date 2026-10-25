@@ -19,6 +19,8 @@ import cotizacionIcon from "@/assets/cotizacion-icon.png";
 import construccionIcon from "@/assets/construccion-icon.png";
 import entregaIcon from "@/assets/entrega-icon.png";
 
+import { trackFormLead, trackWhatsAppLead } from "@/lib/analytics";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -117,6 +119,7 @@ function Index() {
       const result = await response.json();
 
       if (result.success) {
+        trackFormLead();
         setStatus("¡Gracias! Tu solicitud fue enviada, te contactaremos pronto.");
         form.reset();
       } else {
@@ -131,7 +134,7 @@ function Index() {
     <div className="min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur">
         <div className="mx-auto grid min-h-20 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 sm:flex sm:justify-between sm:gap-4 sm:px-8 lg:px-10">
-          <a href="#inicio" className="flex min-w-0 items-center gap-2" aria-label="Frioequipos inicio">
+          <a href="#inicio" className="flex min-h-0 items-center gap-2" aria-label="Frioequipos inicio">
             <img src={brandLogo} alt="Frioequipos Cuartos Fríos" className="h-auto w-28 sm:w-44 md:w-52" />
           </a>
 
@@ -147,7 +150,7 @@ function Index() {
               <span className="hidden min-[430px]:inline">8125947679</span>
             </a>
             <Button asChild variant="whatsapp" size="lg" className="px-2.5 text-xs sm:px-6 sm:text-sm">
-              <a href={whatsappUrl} target="_blank" rel="noreferrer">
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" onClick={trackWhatsAppLead}>
                 <span className="hidden min-[430px]:inline">Cotización por Whatsapp</span>
                 <span className="min-[430px]:hidden">Whatsapp</span>
               </a>
@@ -180,7 +183,7 @@ function Index() {
               </p>
               <div className="mt-9 flex flex-col gap-5 lg:flex-row lg:items-end">
                 <Button asChild variant="whatsapp" size="xl" className="w-fit px-10 font-extrabold">
-                  <a href={whatsappUrl} target="_blank" rel="noreferrer">
+                  <a href={whatsappUrl} target="_blank" rel="noreferrer" onClick={trackWhatsAppLead}>
                     Cotiza por Whatsapp
                   </a>
                 </Button>
@@ -377,7 +380,7 @@ function Index() {
             </p>
             <div className="mt-12 flex flex-col gap-5 sm:flex-row">
               <Button asChild variant="whatsapp" size="xl" className="px-10 font-extrabold">
-                <a href={whatsappUrl} target="_blank" rel="noreferrer">
+                <a href={whatsappUrl} target="_blank" rel="noreferrer" onClick={trackWhatsAppLead}>
                   Cotiza por Whatsapp
                 </a>
               </Button>
@@ -411,7 +414,7 @@ function Index() {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 text-sm font-medium sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
           <p>Copyright © {currentYear} Frioequipos</p>
           <div className="flex items-center gap-4">
-            <a href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="WhatsApp Frioequipos">
+            <a href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="WhatsApp Frioequipos" onClick={trackWhatsAppLead}>
               <Phone className="size-6 text-accent" />
             </a>
             <a href={linkedinUrl} target="_blank" rel="noreferrer" aria-label="LinkedIn Frioequipos">
