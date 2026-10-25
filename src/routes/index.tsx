@@ -8,8 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 
 import heroImage from "@/assets/cold-storage-warehouse.png";
 import brandLogo from "@/assets/frioequipos-logo.png";
-import coverageMap from "@/assets/coverage-map.png";
-import roomInstallation from "@/assets/cold-room-installation.png";
 import uatLogo from "@/assets/uat-logo.png";
 import teneriasLogo from "@/assets/tenerias-logo.png";
 import casonaLogo from "@/assets/casona-santa-lucia-logo.png";
@@ -349,7 +347,7 @@ function Index() {
         <section className="bg-brand-panel py-16 sm:py-24">
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 md:grid-cols-[360px_1fr]">
             <img
-              src={coverageMap}
+              src="/coverage-map.png"
               alt="Cobertura de Frioequipos en el norte de México"
               width={285}
               height={482}
@@ -398,7 +396,7 @@ function Index() {
               className="h-full min-h-[350px] w-full object-cover"
             />
             <img
-              src={roomInstallation}
+              src="/cold-room-installation.png"
               alt="Interior de cuarto frío con unidades de refrigeración"
               width={928}
               height={720}
