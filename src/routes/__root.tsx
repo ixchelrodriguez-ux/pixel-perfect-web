@@ -12,6 +12,9 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+
+
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -133,13 +136,28 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
+export function RootComponent() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const script1 = document.createElement("script");
+      script1.async = true;
+      script1.src = "https://www.googletagmanager.com/gtag/js?id=AW-18445447810";
+      document.head.appendChild(script1);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-    </QueryClientProvider>
-  );
+      const script2 = document.createElement("script");
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18445447810');
+      `;
+      document.head.appendChild(script2);
+    }
+  }, []);
+
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 }
